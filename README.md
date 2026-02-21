@@ -108,7 +108,3 @@ Generate your upload key if you don't already have one:
 ```bash
 keytool -genkey -v -keystore ./keys/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload
 ```
-
-## Development
-
-We are all Fool Stack Developers

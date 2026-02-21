@@ -1,0 +1,161 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "(Start) Create Upload Key",
+      "type": "shell",
+      "command": "keytool -genkey -v -keystore ./keys/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload",
+
+      "icon": {
+        "id": "checklist",
+        "color": "terminal.ansiGreen"
+      },
+      "group": {
+        "kind": "build"
+      }
+    },
+    {
+      "label": "Build Runner",
+      "type": "shell",
+      "command": "flutter pub run build_runner build --delete-conflicting-outputs",
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "icon": {
+        "id": "tools",
+        "color": "terminal.ansiBlue"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Flutter Pub Get",
+      "type": "shell",
+      "command": "flutter pub get",
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "icon": {
+        "id": "cloud-download",
+        "color": "terminal.ansiMagenta"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Flutter Clean",
+      "type": "shell",
+      "command": "flutter clean",
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "icon": {
+        "id": "refresh",
+        "color": "terminal.ansiYellow"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Flutter Build APK",
+      "type": "shell",
+      "command": "flutter build apk --dart-define-from-file=assets/config.json",
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "icon": {
+        "id": "robot",
+        "color": "terminal.ansiGreen"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Flutter Build App Bundle",
+      "type": "shell",
+      "command": "flutter build appbundle --dart-define-from-file=assets/config.json",
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "icon": {
+        "id": "robot",
+        "color": "terminal.ansiGreen"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Ship Android",
+      "type": "shell",
+      "command": "fastlane internal",
+      "options": {
+        "cwd": "${workspaceFolder}/android"
+      },
+      "icon": {
+        "id": "rocket",
+        "color": "terminal.ansiGreen"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      }
+    },
+    {
+      "label": "Ship iOS",
+      "type": "shell",
+      "command": "fastlane beta",
+      "options": {
+        "cwd": "${workspaceFolder}/ios"
+      },
+      "icon": {
+        "id": "rocket",
+        "color": "terminal.ansiGreen"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      }
+    },
+    {
+      "label": "1. Setup Template Remote (First Time Only)",
+      "type": "shell",
+      "command": "git remote add template https://github.com/Sapid-Labs/sapid_labs_flutter_template.git && git fetch template && git branch --track template-main template/main && echo '✅ Template remote configured'",
+      "icon": {
+        "id": "repo-sync",
+        "color": "terminal.ansiGreen"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "2. Create Upload Key",
+      "type": "shell",
+      "command": "keytool -genkey -v -keystore ./keys/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload",
+      "icon": {
+        "id": "checklist",
+        "color": "terminal.ansiGreen"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      }
+    },
+    {
+      "label": "Pull Template Updates",
+      "type": "shell",
+      "command": "git fetch template && git merge template/main --allow-unrelated-histories",
+      "icon": {
+        "id": "sync",
+        "color": "terminal.ansiBlue"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "problemMatcher": []
+    }
+  ]
+}
